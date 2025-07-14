@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { TaskSuggestComponent } from '../components/task-suggestion/task-suggestion';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  imports: [TaskSuggestComponent],
+
+  template: `<app-task-suggest></app-task-suggest>`,
+  styleUrl: './app.css',
 })
 export class App {
   protected title = 'my-first-app';

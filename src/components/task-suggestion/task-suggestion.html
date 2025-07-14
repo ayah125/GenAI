@@ -1,0 +1,68 @@
+<div class="container my-5 p-4 rounded-4 shadow-sm custom-container">
+  <h3 class="mb-4 text-center fw-semibold custom-title">
+    <i class="bi bi-lightbulb"></i> Task Suggestion
+  </h3>
+
+  <div class="card custom-card mb-3 border-0">
+    <div class="card-body">
+      <div class="mb-3 position-relative">
+        <textarea
+          [(ngModel)]="task.description"
+          class="form-control"
+          rows="3"
+          placeholder="Enter task description..."
+        ></textarea>
+      </div>
+      <div class="mb-3 position-relative">
+        <select [(ngModel)]="task.difficulty" class="form-select">
+          <option value="" disabled>Select difficulty</option>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </div>
+      <button
+        (click)="smartAssignTask()"
+        [disabled]="isLoading"
+        class="btn custom-btn w-100"
+      >
+        <i class="bi bi-magic"></i>
+        {{ isLoading ? 'Processing...' : 'Smart Assign Task' }}
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="result" class="mt-4 fade-in-up">
+    <h5 class="mb-3 fw-semibold custom-success">
+      <i class="bi bi-person-check"></i> Developer Info:
+    </h5>
+    <div class="card custom-card border-0">
+      <div class="card-body">
+        <p><strong>Task:</strong> {{ result.task }}</p>
+        <p><strong>Difficulty:</strong> {{ result.difficulty }}</p>
+        <div *ngIf="result.developer">
+          <p>
+            <strong>Assigned To:</strong> {{ result.developer.name }}
+            <span class="badge custom-badge ms-2"
+              >Score: {{ result.developer.score }}</span
+            >
+          </p>
+        </div>
+        <div *ngIf="result.recommendedDeveloper">
+          <p>
+            <strong>Suggested Developer:</strong> {{
+            result.recommendedDeveloper.name }}
+            <span class="badge custom-badge ms-2"
+              >Score: {{ result.recommendedDeveloper.score }}</span
+            >
+          </p>
+        </div>
+        <div *ngIf="!result.developer && !result.recommendedDeveloper">
+          <p class="text-muted fst-italic mb-0">
+            No developer recommended for this task.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
