@@ -27,7 +27,6 @@ export class TaskSuggestComponent {
       );
       this.result = response;
 
-      // ✅ check if totalTasks reached or exceeded 5
       if (response.totalTasks >= 5) {
         await Swal.fire({
           icon: 'warning',
@@ -36,7 +35,6 @@ export class TaskSuggestComponent {
           confirmButtonColor: '#d33',
         });
 
-        // إعادة اقتراح developer آخر تلقائياً
         await this.smartAssignTask();
         return;
       }
